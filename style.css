@@ -1,0 +1,6 @@
+#title-slide .author {
+  font-size: 80px!important;
+}
+#title-slide .author:after {
+  content: url('images/rstudio_logo.png') ;
+  display: block;

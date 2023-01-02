@@ -1,0 +1,4 @@
+.env
+.venv
+.httr-oauth
+.DS_Store

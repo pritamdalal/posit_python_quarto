@@ -1,2 +1,2 @@
 # python_quarto_slides
-Slides for a presentation on Quarto and Python
+Slides for a presentation on Python and Quarto.
