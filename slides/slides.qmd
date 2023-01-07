@@ -56,11 +56,11 @@ This talk is not intended to be a self-contained workshop.
 :::
 
 
-1. clone github repo
+1. install quarto
 
-2. install quarto
+1. clone github repo: [https://github.com/pritamdalal/posit_python_quarto](https://github.com/pritamdalal/posit_python_quarto)
 
-3. create a virtual environment and:  `pip install -r requirements.txt`
+1. create a virtual environment and:  `pip install -r requirements.txt`
 
 # Quarto
 
