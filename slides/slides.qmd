@@ -6,6 +6,7 @@ format:
   revealjs:
     hash-type: number
     transition: fade
+    embed-resources: true
     auto-stretch: false
     height: 900
     width: 1600
@@ -13,8 +14,8 @@ format:
     logo: https://www.rstudio.com/assets/img/posit-logo-fullcolor-TM.svg
     css: style.css
 jupyter: python3
-editor:
-  render-on-save: true
+#editor:
+#  render-on-save: true
 # execute:
 #   keep-ipynb: true
 ---
@@ -22,27 +23,57 @@ editor:
 # Posit and Python
 
 
-## Rebrand
-Posit is about more than just R
+##
+
+![](images/rebrand.png){.r-stretch fig-align="center"}
 
 
-## Posit Team
-Overview of products.
 
-## Python in Posit Team
-Workbench - develop in Python using VS Code, JupyterLab, and Jupyter Notebook (classic)
+## Posit Team and Python
+![](images/posit_team_small.png){.r-stretch fig-align="center"}
 
-Connect - deploy a wide range of Python data products, including Jupyter Notebooks (reports, ETL jobs), dash apps, FastApi, **Quarto**. 
+::: {.incremental}
+* **Workbench:** develop in Python using VS Code, JupyterLab, and Jupyter Notebook (classic)
 
-Package Manager: serves up full PyPI mirror, internally developed Python packages
+* **Connect:** deploy a wide range of Python data products, including Jupyter Notebooks (reports, ETL jobs), Dash apps, FastAPIs, Quarto projects 
 
-## Python First/Only Data Scientist
-While Posit Team is great for bilingual data science teams, it's also a terrific soltutions for Python only teams.
+* **Package Manager:** serves up a full PyPI mirror and internally developed Python packages
+:::
+
+
+
+## Python Only Data Scientists
+
+::: {.incremental}
+- Given our deep history with R, and our extensive support for Python, Posit Team is great for bilingual data science teams.
+
+- It's also an **excellent** soltution for Python only teams.
+:::
+
 
 ## Posit and Python Open Source
-Posit has a rich and storied history of developing open source softward for the R ecosystem: RStudio IDE, tidyverse, shiny.
+Posit has a rich and storied history of developing open source software for the R ecosystem: RStudio IDE, tidyverse, Shiny.
 
-In the last couple of years, Posit has begun significant development in the Python open source ecosystem with projects like quarto, vetiver, shiny for Python.
+::: {layout-ncol="3"}
+![](images/rstudio_ide_logo.jpeg)
+
+![](images/tidyverse.png)
+
+![](images/shiny_hex.jpeg)
+:::
+
+. . . 
+
+In the last couple of years, Posit has begun significant development in the Python open source ecosystem with projects like Quarto, Vetiver, Shiny for Python.
+
+::: {layout-ncol="3"}
+![](images/quarto_logo.png)
+
+![](images/vetiver_hex.png)
+
+![](images/shiny_for_python.png)
+:::
+
 
 
 # Materials
@@ -57,6 +88,8 @@ This talk is not intended to be a self-contained workshop.
 
 
 1. install quarto
+
+1. install quarto VSCode extension
 
 1. clone github repo: [https://github.com/pritamdalal/posit_python_quarto](https://github.com/pritamdalal/posit_python_quarto)
 
@@ -89,10 +122,14 @@ Literate programming system in the tradition of Org-Mode, Weave.jl, R Markdown, 
 ::: {.incremental}
 
 * Open Source project sponsored by Posit, PBC (formerly known as RStudio, PBC)
-* 10 years of experience with R Markdown, a similar system that was R-specific, convinced us that the core ideas were sound
+
+* Builds on Posit's decade of experience developing R Markdown, a similar system that is R-specific
+
 * The number of languages and runtimes used for scientific discourse is broad
+
 * Quarto is a ground-up re-imagining of R Markdown that is fundamentally multi-language and multi-engine
-* Quarto gets inspiration from both R Markdown and Jupyter, and provides a plain-text option or the use of native Jupyter notebooks
+
+* Quarto gets inspiration from both R Markdown and Jupyter; it allows for development in a plain-text format (.qmd) or in Jupyter notebooks (.ipynb)
 
 :::
 
@@ -187,7 +224,7 @@ $ quarto render hello.qmd --to revealjs
 
 :::
 
-## 
+## Output Formats
 
 :::: {.columns style="margin-top=-20px;"}
 
@@ -340,7 +377,7 @@ jupyter: python3
 
 :::
 
-## Stored/frozen computation and reproducibility
+<!-- ## Stored/frozen computation and reproducibility
 
 1. Jupyter natively approaches this as storing the source code, output file, and cache the resulting computation in a single document (`.ipynb` which is JSON)
 
@@ -354,7 +391,7 @@ jupyter: python3
 
 - Source code input (plain text `.qmd` and/or `.ipynb`)
 - Complete output file (some format like `.html` or `.pdf`)
-- Frozen computation stored separately by directory and file as `.json`, allows for permanately saving and re-use of computational outputs across _entire project_.
+- Frozen computation stored separately by directory and file as `.json`, allows for permanately saving and re-use of computational outputs across _entire project_. -->
 
 
 ## A `.qmd` is a plain text file
@@ -432,9 +469,9 @@ This is a sentence with some **bold text**, some *italic text* and an
 :::
 
 
-## But Quarto doesn't _have_ to be plain-text
+## Quarto can also use `.ipynb` as source
 
-![](images/jupyter-quarto-preview.png)
+![](images/jupyter-quarto-preview.png){width="65%" fig-align="center"}
 
 
 ## Rendering pipeline
@@ -494,18 +531,18 @@ Convert notebook to markdown, write to file: quarto convert doc.ipynb --output d
 :::
 
 
-## Comfort of your own workspace
+## Develop in JupyterLab or VSCode
 
 ::: r-stack
-![](https://quarto.org/docs/tools/images/jupyterlab-preview.png){.fragment width="1700px" fig-alt="A screenshot of a Quarto document rendered inside JupyterLab"}
+![](https://quarto.org/docs/tools/images/jupyterlab-preview.png){.fragment width="1200px" fig-alt="A screenshot of a Quarto document rendered inside JupyterLab"}
 
-![](https://quarto.org/docs/computations/images/python-vscode.png){.fragment width="1700px" fig-alt="A screenshot of a Quarto document rendered inside VSCode"}
+![](https://quarto.org/docs/computations/images/python-vscode.png){.fragment width="1200px" fig-alt="A screenshot of a Quarto document rendered inside VSCode"}
 
 <!-- ![](https://quarto.org/docs/tools/images/rstudio-preview.png){.fragment width="1700px" fig-alt="A screenshot of a Quarto document rendered inside RStudio"} -->
 :::
 
 
-## Auto-completion in VSCode (with Quarto Extension)
+## VSCode with Quarto Extension - Auto-Completion
 
 <br>
 
@@ -532,7 +569,7 @@ Convert notebook to markdown, write to file: quarto convert doc.ipynb --output d
 ::::
 
 
-## Built-in vs custom
+<!-- ## Built-in vs Custom
 
 One goal of Quarto is to provide a markdown-centric format-agnostic syntax as shown in previous slides. 
 
@@ -549,10 +586,10 @@ One goal of Quarto is to provide a markdown-centric format-agnostic syntax as sh
 
 . . .
 
-* BUT you can always include raw content such as LaTeX, CSS, HTML, JavaScript to further customize and optimize for a specific format.
+* BUT you can always include raw content such as LaTeX, CSS, HTML, JavaScript to further customize and optimize for a specific format. -->
 
 
-## Quarto Publish
+## Publish Quarto to Posit Connect
 
 ::: {style="font-size: 50px;"}
 ```bash
@@ -572,10 +609,14 @@ quarto publish --help
 
 :::
 
-**TO DO: ADD CONNECT IMAGE**
-<!-- . . .
 
-![](images/quartopub.jpeg){fig-align=center style="width: 1200px;" fig-alt="Screenshot of the quartopub.com website"} -->
+. . .
+
+<!-- **TO DO: ADD CONNECT IMAGE** -->
+
+![](images/posit_connect.png){fig-align="center" width="50%"}
+
+<!-- ![](images/quartopub.jpeg){fig-align=center style="width: 1200px;" fig-alt="Screenshot of the quartopub.com website"} -->
 
 
 ## Quarto, crafted with love and care
