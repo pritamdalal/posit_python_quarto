@@ -1,0 +1,3 @@
+# Preface {.unnumbered}
+
+This is a Quarto book that I put together from an existing collection of Jupyter notebook tutorials.

@@ -1,7 +1,6 @@
 ---
 title: Posit, Python, and Quarto
 author: Pritam Dalal and Thomas Mock
-#date: January 19, 2023
 format: 
   revealjs:
     hash-type: number
@@ -14,10 +13,6 @@ format:
     logo: https://www.rstudio.com/assets/img/posit-logo-fullcolor-TM.svg
     css: style.css
 jupyter: python3
-#editor:
-#  render-on-save: true
-# execute:
-#   keep-ipynb: true
 ---
 
 # Posit and Python
@@ -41,17 +36,10 @@ jupyter: python3
 :::
 
 
-
-## Python Only Data Scientists
-
-::: {.incremental}
-- Given our deep history with R, and our extensive support for Python, Posit Team is great for bilingual data science teams.
-
-- It's also an **excellent** soltution for Python only teams.
-:::
-
-
 ## Posit and Python Open Source
+
+. . .
+
 Posit has a rich and storied history of developing open source software for the R ecosystem: RStudio IDE, tidyverse, Shiny.
 
 ::: {layout-ncol="3"}
@@ -73,6 +61,20 @@ In the last couple of years, Posit has begun significant development in the Pyth
 
 ![](images/shiny_for_python.png)
 :::
+
+
+## Key Takeaways
+
+::: {.incremental}
+- All three Posit professional products (Workbench, Connect, Package Manager) have extensive support for Python data science.
+
+- We have extended our open-source mission to include Python with project like Vetiver, Shiny for Python, and Quarto.
+
+- Given our deep history with R, and our extensive support for Python, Posit Team is great for bilingual data science teams.
+
+- **Posit Team is an excellent solution for Python only teams.**
+:::
+
 
 
 
@@ -105,7 +107,7 @@ This talk is not intended to be a self-contained workshop.
 
 Quarto is an open-source scientific and technical publishing system that builds on standard markdown with features essential for scientific communication.
 
-* Computations: Python, R, Julia, Observable JS
+* Integrate prose and computations: Python, R, Julia, Observable JS
 * Markdown: Pandoc flavored markdown with many enhancements
 * Output: Documents, presentations, websites, books, blogs
 
@@ -134,7 +136,11 @@ Literate programming system in the tradition of Org-Mode, Weave.jl, R Markdown, 
 :::
 
 
-## Goal: Single Source Publishing
+## Single Source Publishing
+
+With Quarto, from a single *source* file, you can *render* a variety of output types.
+
+<br>
 
 ![](images/single-source-publish.png){.r-stretch fig-align="center"}
 
@@ -207,7 +213,7 @@ plt.show()
 
 <br>
 
-Can be rendered to dozens of output formats with Quarto (via Pandoc):
+Our simple example, can be rendered to dozens of output formats with Quarto (via Pandoc):
 
 . . .
 
@@ -224,7 +230,7 @@ $ quarto render hello.qmd --to revealjs
 
 :::
 
-## Output Formats
+## Output Formats - Batteries Included
 
 :::: {.columns style="margin-top=-20px;"}
 
@@ -353,7 +359,9 @@ $ quarto preview python.ipynb --execute
 
 ## IPython
 
-For execution of R, Quarto uses `knitr` as the engine, but for Python Quarto natively executes Python with Jupyter kernels such as IPython.
+<!-- For execution of R, Quarto uses `knitr` as the engine, but for Python Quarto natively executes Python with Jupyter kernels such as IPython. -->
+
+Quarto executes Python with Jupyter kernels such as IPython.
 
 ::: {.incremental}
 
@@ -478,13 +486,13 @@ This is a sentence with some **bold text**, some *italic text* and an
 
 . . .
 
-**Plain text workflow** (`.qmd` uses Jupyter kernel to execute cells):
+**Plain text workflow** (`.qmd` uses Jupyter kernel to execute code chunks):
 
 ![](images/qmd-jupyter-pipeline.png)
 
 . . .
 
-**Notebook workflow** (defaults to using existing stored computation):
+**Notebook workflow** (`.ipynb` executes code using Jupyter kernel, or can use computations stored in notebook):
 
 ![](images/jupyter-pipeline.png)
 
@@ -542,7 +550,7 @@ Convert notebook to markdown, write to file: quarto convert doc.ipynb --output d
 :::
 
 
-## VSCode with Quarto Extension - Auto-Completion
+## VSCode with Quarto Extension: Auto-Completion
 
 <br>
 
@@ -636,6 +644,70 @@ quarto publish --help
 Here is the [full contributors list](https://github.com/quarto-dev/quarto-cli/graphs/contributors). Quarto is open source and we welcome contributions in our github repository as well! <https://github.com/quarto-dev/quarto-cli>.
 
 
+## Quarto
+
+- Batteries included, shared syntax across output types and languages
+- Choose your own editor and your preferred data science language
+- RMarkdown still maintained, but majority of new features built into Quarto
+
+Follow [\@quarto_pub](https://twitter.com/quarto_pub) on Twitter to stay up to date!
+
+. . .
+
+### Web resources
+
+:::{style="font-size: 30px;"}
+
+-   [Quarto.org](https://quarto.org/) for documentation or the [Quarto FAQ](https://quarto.org/docs/faq/)
+-   ["With Quarto Coming, is R Markdown Going Away? No." - Yihui.org](https://yihui.org/en/2022/04/quarto-r-markdown/)
+
+:::
+
+## Quarto resources
+
+- [Quarto for the Curious - 20 min video](https://www.rstudio.com/conference/2022/talks/quarto-for-rmarkdown-users/)
+- ['Welcome to Quarto' workshop - 120 min video](https://www.youtube.com/watch?v=yvi5uXQMvu4)
+- [Beautiful Reports and Presentations with Quarto - 60 min](https://www.youtube.com/watch?v=hbf7Ai3jnxY&t=751s)
+- [Building a blog with Quarto - 60 min](https://www.youtube.com/watch?v=CVcvXfRyfE0&t=3308s)
+
+### General Quarto
+
+- [Hello Quarto: Share • Collaborate • Teach • Reimagine - Conf Keynote, 60 min](https://www.rstudio.com/conference/2022/keynotes/collaborate-with-quarto/)
+- [Literate Programming With Jupyter Notebooks and Quarto - 20 min](https://www.rstudio.com/conference/2022/talks/literate-programming-quarto/)
+- [Websites & Books & Blogs, oh my! Creating Rich Content with Quarto](https://www.rstudio.com/conference/2022/talks/sessions/quarto-deep-dive/websites-books-blogs-quarto/)
+- [These are a few of my favorite things (about Quarto presentations)](https://www.rstudio.com/conference/2022/talks/my-favorite-things-quarto-presentations/)
+- [Quarto FAQ](https://quarto.org/docs/faq/)
+
+##
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+### Quarto Gallery
+
+Quarto can produce a wide variety of output formats. 
+
+Here are some examples:
+
+- [Articles & Reports](https://quarto.org/docs/gallery/#articles-reports)
+- [Presentations](https://quarto.org/docs/gallery/#presentations)
+- [Interactive Docs](https://quarto.org/docs/gallery/#interactive-docs)
+- [Websites](https://quarto.org/docs/gallery/#websites)
+- [Books](https://quarto.org/docs/gallery/#books)
+
+<https://quarto.org/docs/gallery/>
+
+:::
+
+::: {.column width="50%"}
+![](images/gallery-screenshot.png)
+:::
+
+::::
+
+
+# Thank You
 
 
 

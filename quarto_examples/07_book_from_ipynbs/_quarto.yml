@@ -1,0 +1,25 @@
+project:
+  type: book
+
+book:
+  title: "Python for Data Wrangling in Finance"
+  author: "Pritam Dalal"
+  chapters:
+    - index.qmd
+    - 01_jumpstart.ipynb
+    - 02_dataframe_basics.ipynb
+    - 03_index_slice.ipynb
+    - 04_query.ipynb
+    - 05_functions_apply.ipynb
+    - 06_merge.ipynb
+    - 07_groupby_aggregation_part_1.ipynb
+    - 08_groupby_aggregation_part_2.ipynb
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+

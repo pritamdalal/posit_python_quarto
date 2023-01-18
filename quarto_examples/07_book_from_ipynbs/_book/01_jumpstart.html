@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Python for Data Wrangling in Finance - 1&nbsp; Python Jumpstart</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./02_dataframe_basics.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Jumpstart</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Python for Data Wrangling in Finance</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_jumpstart.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Jumpstart</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_dataframe_basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>DataFrame</code> Basics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_index_slice.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><code>DataFrame</code> Indexing and Slicing</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_query.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><code>DataFrame</code> Querying</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_functions_apply.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Functions and <code>DataFrame.apply()</code> Method</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_merge.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Merging <code>DataFrames</code></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_groupby_aggregation_part_1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>.groupby()</code> and <code>.agg()</code> - Part 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08_groupby_aggregation_part_2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><code>.groupby()</code> and <code>.agg()</code> - Part 2</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#what-is-a-notebook" id="toc-what-is-a-notebook" class="nav-link active" data-scroll-target="#what-is-a-notebook"><span class="toc-section-number">1.1</span>  What is a Notebook?</a></li>
+  <li><a href="#code-cells" id="toc-code-cells" class="nav-link" data-scroll-target="#code-cells"><span class="toc-section-number">1.2</span>  Code Cells</a></li>
+  <li><a href="#edit-mode-vs-command-mode" id="toc-edit-mode-vs-command-mode" class="nav-link" data-scroll-target="#edit-mode-vs-command-mode"><span class="toc-section-number">1.3</span>  Edit Mode vs Command Mode</a></li>
+  <li><a href="#keyboard-shortcuts" id="toc-keyboard-shortcuts" class="nav-link" data-scroll-target="#keyboard-shortcuts"><span class="toc-section-number">1.4</span>  Keyboard Shortcuts</a></li>
+  <li><a href="#drop-down-menus" id="toc-drop-down-menus" class="nav-link" data-scroll-target="#drop-down-menus"><span class="toc-section-number">1.5</span>  Drop Down Menus</a></li>
+  <li><a href="#importing-packages" id="toc-importing-packages" class="nav-link" data-scroll-target="#importing-packages"><span class="toc-section-number">1.6</span>  Importing Packages</a></li>
+  <li><a href="#reading-in-stock-data-into-a-dataframe" id="toc-reading-in-stock-data-into-a-dataframe" class="nav-link" data-scroll-target="#reading-in-stock-data-into-a-dataframe"><span class="toc-section-number">1.7</span>  Reading-In Stock Data into a <code>DataFrame</code></a></li>
+  <li><a href="#dataframe-index" id="toc-dataframe-index" class="nav-link" data-scroll-target="#dataframe-index"><span class="toc-section-number">1.8</span>  <code>DataFrame</code> Index</a></li>
+  <li><a href="#a-bit-of-cleaning" id="toc-a-bit-of-cleaning" class="nav-link" data-scroll-target="#a-bit-of-cleaning"><span class="toc-section-number">1.9</span>  A Bit of Cleaning</a></li>
+  <li><a href="#series" id="toc-series" class="nav-link" data-scroll-target="#series"><span class="toc-section-number">1.10</span>  <code>Series</code></a></li>
+  <li><a href="#numpy-and-ndarrays" id="toc-numpy-and-ndarrays" class="nav-link" data-scroll-target="#numpy-and-ndarrays"><span class="toc-section-number">1.11</span>  <code>numpy</code> and <code>ndarrays</code></a></li>
+  <li><a href="#series-built-in-methods" id="toc-series-built-in-methods" class="nav-link" data-scroll-target="#series-built-in-methods"><span class="toc-section-number">1.12</span>  <code>Series</code> Built-In Methods</a></li>
+  <li><a href="#calculating-daily-returns" id="toc-calculating-daily-returns" class="nav-link" data-scroll-target="#calculating-daily-returns"><span class="toc-section-number">1.13</span>  Calculating Daily Returns</a></li>
+  <li><a href="#visualizing-adjusted-close-prices" id="toc-visualizing-adjusted-close-prices" class="nav-link" data-scroll-target="#visualizing-adjusted-close-prices"><span class="toc-section-number">1.14</span>  Visualizing Adjusted Close Prices</a></li>
+  <li><a href="#visualizing-returns" id="toc-visualizing-returns" class="nav-link" data-scroll-target="#visualizing-returns"><span class="toc-section-number">1.15</span>  Visualizing Returns</a></li>
+  <li><a href="#calculating-realized-volatility" id="toc-calculating-realized-volatility" class="nav-link" data-scroll-target="#calculating-realized-volatility"><span class="toc-section-number">1.16</span>  Calculating Realized Volatility</a></li>
+  <li><a href="#visualizing-realized-volatility" id="toc-visualizing-realized-volatility" class="nav-link" data-scroll-target="#visualizing-realized-volatility"><span class="toc-section-number">1.17</span>  Visualizing Realized Volatility</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="toc-section-number">1.18</span>  Further Reading</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Jumpstart</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>The purpose of this tutorial is to introduce <em>Jupyter Notebook</em> files, and to give a glimpse of how to use them to work with financial data.</p>
+<p>In particular, we will visualize stock index data to observe the leverage effect: when the market suffers losses, prices become more volatile.</p>
+<section id="what-is-a-notebook" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="what-is-a-notebook"><span class="header-section-number">1.1</span> What is a Notebook?</h2>
+<p>This file - the one you are currently interacting with - is a Jupyter Notebook.</p>
+<p>The notebook format conveniently allows you to combine words/sentences, computer code, code output (including plots), and mathematical notation. Notebooks have proven to be a convenient and productive programming environment for data analysis.</p>
+<p>For those of you familiar with R, a Jupyter Notebook is similar in functionality to R Markdown notebooks.</p>
+<p>Behind the scenes of a Jupyter Notebook is a <em>kernel</em> that is responsible for executing computations. The kernel can live locally on your machine or on a remote server.</p>
+</section>
+<section id="code-cells" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="code-cells"><span class="header-section-number">1.2</span> Code Cells</h2>
+<p>A notebook is structured as a sequence of <em>cells</em>. There are two kinds of cells: 1) code cells that contain code; 2) markdown cells which contain markdown or latex.</p>
+<p>The cell below is a code cell - try typing the code that is commented out and the press <strong>shift + enter</strong>.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Image(<span class="st">"not_ethical.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<p><img src="01_jumpstart_files/figure-html/cell-2-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="edit-mode-vs-command-mode" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="edit-mode-vs-command-mode"><span class="header-section-number">1.3</span> Edit Mode vs Command Mode</h2>
+<p>There are two modes in a notebook: 1) <strong>edit</strong> mode; 2) <strong>command</strong> mode.</p>
+<p>In <strong>edit</strong> mode you are <em>inside</em> a cell and you can edit the contents of the cell.</p>
+<p>In <strong>command</strong> mode, you are <em>outside</em> the cells and you can navigate between them.</p>
+</section>
+<section id="keyboard-shortcuts" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="keyboard-shortcuts"><span class="header-section-number">1.4</span> Keyboard Shortcuts</h2>
+<p>Here are some of my favorite keyboard shortcuts:</p>
+<p>edit mode: <strong>enter</strong></p>
+<p>command mode: <strong>esc</strong></p>
+<p>navigate up: <strong>k</strong></p>
+<p>navigate down: <strong>j</strong></p>
+<p>insert cell above: <strong>a</strong></p>
+<p>insert cell below: <strong>b</strong></p>
+<p>delete cell: <strong>d, d</strong> (press <strong>d</strong> twice)</p>
+<p>switch to code cell: <strong>y</strong></p>
+<p>switch to markup cell: <strong>m</strong></p>
+<p>execute and stay on current cell: <strong>ctrl + enter</strong></p>
+<p>execute and move down a cell: <strong>shift + enter</strong></p>
+</section>
+<section id="drop-down-menus" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="drop-down-menus"><span class="header-section-number">1.5</span> Drop Down Menus</h2>
+<p>Here are a few of the drop down menu functions that I use frequently:</p>
+<p><em>Kernel &gt; Restart Kernel and Clear All Outputs</em></p>
+<p><em>Kernel &gt; Restart Kearnel and Run All Cells</em></p>
+<p><em>Run &gt; Run All Above Selected Cell</em></p>
+</section>
+<section id="importing-packages" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="importing-packages"><span class="header-section-number">1.6</span> Importing Packages</h2>
+<p>The power and convenience of Python as a data analysis tool comes from the ecosystem of freely available third party packages.</p>
+<p>Here are the packages that we will be using in this tutorial:</p>
+<p><code>numpy</code> - efficient vector and matrix computations</p>
+<p><code>pandas</code> - working with <code>DataFrames</code></p>
+<p><code>pandas_datareader</code> - reading data from Yahoo Finance</p>
+<p>The following code imports these packages and assigns them each an alias.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas_datareader <span class="im">as</span> pdr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="reading-in-stock-data-into-a-dataframe" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="reading-in-stock-data-into-a-dataframe"><span class="header-section-number">1.7</span> Reading-In Stock Data into a <code>DataFrame</code></h2>
+<p>Let’s begin by reading in 5 years of SPY price data from Yahoo Finance.</p>
+<p>SPY is an ETF that tracks the performace of the SP500 stock index.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_spy <span class="op">=</span> pdr.get_data_yahoo(<span class="st">'SPY'</span>, start<span class="op">=</span><span class="st">'2014-01-01'</span>, end<span class="op">=</span><span class="st">'2019-01-01'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df_spy <span class="op">=</span> df_spy.<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df_spy.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Open</th>
+      <th>Close</th>
+      <th>Volume</th>
+      <th>Adj Close</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2014-01-02</th>
+      <td>184.07</td>
+      <td>182.48</td>
+      <td>183.98</td>
+      <td>182.92</td>
+      <td>119636900.0</td>
+      <td>158.56</td>
+    </tr>
+    <tr>
+      <th>2014-01-03</th>
+      <td>183.60</td>
+      <td>182.63</td>
+      <td>183.23</td>
+      <td>182.89</td>
+      <td>81390600.0</td>
+      <td>158.54</td>
+    </tr>
+    <tr>
+      <th>2014-01-06</th>
+      <td>183.56</td>
+      <td>182.08</td>
+      <td>183.49</td>
+      <td>182.36</td>
+      <td>108028200.0</td>
+      <td>158.08</td>
+    </tr>
+    <tr>
+      <th>2014-01-07</th>
+      <td>183.79</td>
+      <td>182.95</td>
+      <td>183.09</td>
+      <td>183.48</td>
+      <td>86144200.0</td>
+      <td>159.05</td>
+    </tr>
+    <tr>
+      <th>2014-01-08</th>
+      <td>183.83</td>
+      <td>182.89</td>
+      <td>183.45</td>
+      <td>183.52</td>
+      <td>96582300.0</td>
+      <td>159.08</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Our stock data now lives in the variable called <code>df_spy</code>, which is a <code>pandas</code> data structure known as a <code>DataFrame</code>. We can see this by using the following code:</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(df_spy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>pandas.core.frame.DataFrame</code></pre>
+</div>
+</div>
+</section>
+<section id="dataframe-index" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="dataframe-index"><span class="header-section-number">1.8</span> <code>DataFrame</code> Index</h2>
+<p>In <code>pandas</code>, a <code>DataFrame</code> always has an index. For <code>df_spy</code> the <code>Dates</code> form the index.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_spy.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>DatetimeIndex(['2014-01-02', '2014-01-03', '2014-01-06', '2014-01-07',
+               '2014-01-08', '2014-01-09', '2014-01-10', '2014-01-13',
+               '2014-01-14', '2014-01-15',
+               ...
+               '2018-12-17', '2018-12-18', '2018-12-19', '2018-12-20',
+               '2018-12-21', '2018-12-24', '2018-12-26', '2018-12-27',
+               '2018-12-28', '2018-12-31'],
+              dtype='datetime64[ns]', name='Date', length=1258, freq=None)</code></pre>
+</div>
+</div>
+<p>I don’t use indices very much, so let’s make the <code>Date</code> index just a regular column. Notice that we can modify <code>DataFrames</code> inplace.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_spy.reset_index(inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df_spy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Date</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Open</th>
+      <th>Close</th>
+      <th>Volume</th>
+      <th>Adj Close</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2014-01-02</td>
+      <td>184.07</td>
+      <td>182.48</td>
+      <td>183.98</td>
+      <td>182.92</td>
+      <td>119636900.0</td>
+      <td>158.56</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2014-01-03</td>
+      <td>183.60</td>
+      <td>182.63</td>
+      <td>183.23</td>
+      <td>182.89</td>
+      <td>81390600.0</td>
+      <td>158.54</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2014-01-06</td>
+      <td>183.56</td>
+      <td>182.08</td>
+      <td>183.49</td>
+      <td>182.36</td>
+      <td>108028200.0</td>
+      <td>158.08</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2014-01-07</td>
+      <td>183.79</td>
+      <td>182.95</td>
+      <td>183.09</td>
+      <td>183.48</td>
+      <td>86144200.0</td>
+      <td>159.05</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2014-01-08</td>
+      <td>183.83</td>
+      <td>182.89</td>
+      <td>183.45</td>
+      <td>183.52</td>
+      <td>96582300.0</td>
+      <td>159.08</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1253</th>
+      <td>2018-12-24</td>
+      <td>240.84</td>
+      <td>234.27</td>
+      <td>239.04</td>
+      <td>234.34</td>
+      <td>147311600.0</td>
+      <td>224.30</td>
+    </tr>
+    <tr>
+      <th>1254</th>
+      <td>2018-12-26</td>
+      <td>246.18</td>
+      <td>233.76</td>
+      <td>235.97</td>
+      <td>246.18</td>
+      <td>218485400.0</td>
+      <td>235.63</td>
+    </tr>
+    <tr>
+      <th>1255</th>
+      <td>2018-12-27</td>
+      <td>248.29</td>
+      <td>238.96</td>
+      <td>242.57</td>
+      <td>248.07</td>
+      <td>186267300.0</td>
+      <td>237.44</td>
+    </tr>
+    <tr>
+      <th>1256</th>
+      <td>2018-12-28</td>
+      <td>251.40</td>
+      <td>246.45</td>
+      <td>249.58</td>
+      <td>247.75</td>
+      <td>153100200.0</td>
+      <td>237.13</td>
+    </tr>
+    <tr>
+      <th>1257</th>
+      <td>2018-12-31</td>
+      <td>250.19</td>
+      <td>247.47</td>
+      <td>249.56</td>
+      <td>249.92</td>
+      <td>144299400.0</td>
+      <td>239.21</td>
+    </tr>
+  </tbody>
+</table>
+<p>1258 rows × 7 columns</p>
+</div>
+</div>
+</div>
+<p>Notice that <code>df_spy</code> still has an index, now it’s just a sequence of integers.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df_spy.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>RangeIndex(start=0, stop=1258, step=1)</code></pre>
+</div>
+</div>
+</section>
+<section id="a-bit-of-cleaning" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="a-bit-of-cleaning"><span class="header-section-number">1.9</span> A Bit of Cleaning</h2>
+<p>As a matter of preference, I like to make my column names snake case.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_spy.columns <span class="op">=</span> df_spy.columns.<span class="bu">str</span>.lower().<span class="bu">str</span>.replace(<span class="st">' '</span>,<span class="st">'_'</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df_spy.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>date</th>
+      <th>high</th>
+      <th>low</th>
+      <th>open</th>
+      <th>close</th>
+      <th>volume</th>
+      <th>adj_close</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2014-01-02</td>
+      <td>184.07</td>
+      <td>182.48</td>
+      <td>183.98</td>
+      <td>182.92</td>
+      <td>119636900.0</td>
+      <td>158.56</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2014-01-03</td>
+      <td>183.60</td>
+      <td>182.63</td>
+      <td>183.23</td>
+      <td>182.89</td>
+      <td>81390600.0</td>
+      <td>158.54</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2014-01-06</td>
+      <td>183.56</td>
+      <td>182.08</td>
+      <td>183.49</td>
+      <td>182.36</td>
+      <td>108028200.0</td>
+      <td>158.08</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2014-01-07</td>
+      <td>183.79</td>
+      <td>182.95</td>
+      <td>183.09</td>
+      <td>183.48</td>
+      <td>86144200.0</td>
+      <td>159.05</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2014-01-08</td>
+      <td>183.83</td>
+      <td>182.89</td>
+      <td>183.45</td>
+      <td>183.52</td>
+      <td>96582300.0</td>
+      <td>159.08</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Let’s also remove the columns that we won’t need. We first create a <code>list</code> of the column names that we want to get rid of and then we use the <code>DataFrame.drop()</code> method.</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>lst_cols <span class="op">=</span> [<span class="st">'high'</span>, <span class="st">'low'</span>, <span class="st">'open'</span>, <span class="st">'close'</span>, <span class="st">'volume'</span>,]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_spy.drop(columns<span class="op">=</span>lst_cols, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>df_spy.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>date</th>
+      <th>adj_close</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2014-01-02</td>
+      <td>158.56</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2014-01-03</td>
+      <td>158.54</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2014-01-06</td>
+      <td>158.08</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2014-01-07</td>
+      <td>159.05</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2014-01-08</td>
+      <td>159.08</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Notice that trailing commas are not an issue in Python.</p>
+</section>
+<section id="series" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="series"><span class="header-section-number">1.10</span> <code>Series</code></h2>
+<p>You can isolate the columns of a <code>DataFrame</code> with square brackets as follows:</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_spy[<span class="st">'adj_close'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>0       158.56
+1       158.54
+2       158.08
+3       159.05
+4       159.08
+         ...  
+1253    224.30
+1254    235.63
+1255    237.44
+1256    237.13
+1257    239.21
+Name: adj_close, Length: 1258, dtype: float64</code></pre>
+</div>
+</div>
+<p>The columns of a <code>DataFrame</code> are a <code>pandas</code> data structure called a <code>Series</code>.</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(df_spy[<span class="st">'adj_close'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>pandas.core.series.Series</code></pre>
+</div>
+</div>
+</section>
+<section id="numpy-and-ndarrays" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="numpy-and-ndarrays"><span class="header-section-number">1.11</span> <code>numpy</code> and <code>ndarrays</code></h2>
+<p>Python is a general purpose programming language and was not created for scientific computing in particular. One of the foundational packages that makes Python well suited to scientific computing is <code>numpy</code>, which has a variety of features including a data type called <code>ndarrays</code>. One of the benefits of <code>ndarrays</code> is that they allow for efficient vector and matrix computation.</p>
+<p>The <code>values</code> of a <code>Series</code> object is a <code>numpy.ndarray</code>. This is one sense in which <code>pandas</code> is <em>built on top of</em> <code>numpy</code>.</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_spy[<span class="st">'adj_close'</span>].values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>array([158.56, 158.54, 158.08, ..., 237.44, 237.13, 239.21])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(df_spy[<span class="st">'adj_close'</span>].values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>numpy.ndarray</code></pre>
+</div>
+</div>
+</section>
+<section id="series-built-in-methods" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="series-built-in-methods"><span class="header-section-number">1.12</span> <code>Series</code> Built-In Methods</h2>
+<p><code>Series</code> have a variety of built-in methods that provide convenient summarization and modification functionality. For example, you can <code>.sum()</code> all the elements of the <code>Series</code>.</p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df_spy[<span class="st">'adj_close'</span>].<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>259032.07</code></pre>
+</div>
+</div>
+<p>Next, we calculate the standard deviation of all the elements of the <code>Series</code>.</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_spy[<span class="st">'adj_close'</span>].std()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>34.188328034526734</code></pre>
+</div>
+</div>
+<p>The <code>.shift()</code> built-in method will be useful for calculating returns in the next section.</p>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df_spy[<span class="st">'adj_close'</span>].shift()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>0          NaN
+1       158.56
+2       158.54
+3       158.08
+4       159.05
+         ...  
+1253    230.39
+1254    224.30
+1255    235.63
+1256    237.44
+1257    237.13
+Name: adj_close, Length: 1258, dtype: float64</code></pre>
+</div>
+</div>
+</section>
+<section id="calculating-daily-returns" class="level2" data-number="1.13">
+<h2 data-number="1.13" class="anchored" data-anchor-id="calculating-daily-returns"><span class="header-section-number">1.13</span> Calculating Daily Returns</h2>
+<p>Our analysis analysis of the leverage effect will involve daily returns for all the days in <code>df_spy</code>. Let’s calculate those now.</p>
+<p>Recall that the end-of-day day <span class="math inline">\(t\)</span> return of a stock is defined as: <span class="math inline">\(r_{t} = \frac{S_{t}}{S_{t-1}} - 1\)</span>, where <span class="math inline">\(S_{t}\)</span> is the stock price at end-of-day <span class="math inline">\(t\)</span>.</p>
+<p>Here is a vectorized approach to calculating all the daily returns in a single line of code.</p>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df_spy[<span class="st">'ret'</span>] <span class="op">=</span> df_spy[<span class="st">'adj_close'</span>] <span class="op">/</span> df_spy[<span class="st">'adj_close'</span>].shift(<span class="dv">1</span>) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>df_spy.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>date</th>
+      <th>adj_close</th>
+      <th>ret</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2014-01-02</td>
+      <td>158.56</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2014-01-03</td>
+      <td>158.54</td>
+      <td>-0.000126</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2014-01-06</td>
+      <td>158.08</td>
+      <td>-0.002901</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2014-01-07</td>
+      <td>159.05</td>
+      <td>0.006136</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2014-01-08</td>
+      <td>159.08</td>
+      <td>0.000189</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Notice that we can create a new column of a <code>DataFrame</code> by using variable assignment syntax.</p>
+</section>
+<section id="visualizing-adjusted-close-prices" class="level2" data-number="1.14">
+<h2 data-number="1.14" class="anchored" data-anchor-id="visualizing-adjusted-close-prices"><span class="header-section-number">1.14</span> Visualizing Adjusted Close Prices</h2>
+<p>Python has a variety of packages that can be used for visualization. For this tutorial, we will focus on built-in plotting capabilities of <code>pandas</code>. These capabilities are built on top of the <code>matplotlib</code> package, which is the foundation of much of Python’s visualization ecosystem.</p>
+<p><code>DataFrames</code> have a built-in <code>.plot()</code> method that makes creating simple line graphs quite easy.</p>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df_spy.plot(x<span class="op">=</span><span class="st">'date'</span>, y<span class="op">=</span><span class="st">'adj_close'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="01_jumpstart_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>If we wanted to make this graph more presentable we could do something like:</p>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> df_spy.<span class="op">\</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>        plot(</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span> <span class="st">'date'</span>,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>            y <span class="op">=</span> <span class="st">'adj_close'</span>,</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>            title <span class="op">=</span> <span class="st">'SPY: 2014-2018'</span>,</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>            grid <span class="op">=</span> <span class="va">True</span>,</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>            style <span class="op">=</span> <span class="st">'k'</span>,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>            alpha <span class="op">=</span> <span class="fl">0.75</span>,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>            figsize <span class="op">=</span> (<span class="dv">9</span>, <span class="dv">4</span>),</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>        )<span class="op">;</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Trade Date'</span>)<span class="op">;</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Close Price'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="01_jumpstart_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Notice that the <code>ax</code> variable created above is a <code>matplotlib</code> object.</p>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(ax)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>matplotlib.axes._subplots.AxesSubplot</code></pre>
+</div>
+</div>
+</section>
+<section id="visualizing-returns" class="level2" data-number="1.15">
+<h2 data-number="1.15" class="anchored" data-anchor-id="visualizing-returns"><span class="header-section-number">1.15</span> Visualizing Returns</h2>
+<p>Pandas also gives us the ability to simultaneously plot two different columns of a <code>DataFrame</code> in separate subplots of a single graph. Here is what that code looks like:</p>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df_spy.plot(x<span class="op">=</span><span class="st">'date'</span>, y<span class="op">=</span>[<span class="st">'adj_close'</span>, <span class="st">'ret'</span>,], subplots<span class="op">=</span><span class="va">True</span>, style<span class="op">=</span><span class="st">'k'</span>, alpha<span class="op">=</span><span class="fl">0.75</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">8</span>), grid<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="01_jumpstart_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>The <code>returns</code> graph above is a bit of a hack, but it’s used all the time in finance to demonstrate volatility clustering.</p>
+<p>Notice that whenever there is a sharp drop in the <code>adj_close</code> price graph, that the magnitude of the nearby returns becomes large. In contrast, during periods of steady growth (e.g.&nbsp;all of 2017) the magnitude of the returns is small.</p>
+</section>
+<section id="calculating-realized-volatility" class="level2" data-number="1.16">
+<h2 data-number="1.16" class="anchored" data-anchor-id="calculating-realized-volatility"><span class="header-section-number">1.16</span> Calculating Realized Volatility</h2>
+<p>Realized volatility is defined as the standard deviation of the daily returns; it indicates how much variability in the stock price there has been. It is a matter of convention to annualize this quantity, so we multiply it by <span class="math inline">\(\sqrt{252}\)</span>.</p>
+<p>The following vectorized code calculates a rolling 2-month volatility for our SPY price data.</p>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df_spy[<span class="st">'ret'</span>].rolling(<span class="dv">42</span>).std() <span class="op">*</span> np.sqrt(<span class="dv">252</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>0            NaN
+1            NaN
+2            NaN
+3            NaN
+4            NaN
+          ...   
+1253    0.226709
+1254    0.252811
+1255    0.249180
+1256    0.245997
+1257    0.247003
+Name: ret, Length: 1258, dtype: float64</code></pre>
+</div>
+</div>
+<p>Let’s add these realized volatility calculations to<code>df_spy</code> this with the following code:</p>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>df_spy[<span class="st">'realized_vol'</span>] <span class="op">=</span> df_spy[<span class="st">'ret'</span>].rolling(<span class="dv">42</span>).std() <span class="op">*</span> np.sqrt(<span class="dv">252</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>df_spy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>date</th>
+      <th>adj_close</th>
+      <th>ret</th>
+      <th>realized_vol</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2014-01-02</td>
+      <td>158.56</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2014-01-03</td>
+      <td>158.54</td>
+      <td>-0.000126</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2014-01-06</td>
+      <td>158.08</td>
+      <td>-0.002901</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2014-01-07</td>
+      <td>159.05</td>
+      <td>0.006136</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2014-01-08</td>
+      <td>159.08</td>
+      <td>0.000189</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1253</th>
+      <td>2018-12-24</td>
+      <td>224.30</td>
+      <td>-0.026433</td>
+      <td>0.226709</td>
+    </tr>
+    <tr>
+      <th>1254</th>
+      <td>2018-12-26</td>
+      <td>235.63</td>
+      <td>0.050513</td>
+      <td>0.252811</td>
+    </tr>
+    <tr>
+      <th>1255</th>
+      <td>2018-12-27</td>
+      <td>237.44</td>
+      <td>0.007682</td>
+      <td>0.249180</td>
+    </tr>
+    <tr>
+      <th>1256</th>
+      <td>2018-12-28</td>
+      <td>237.13</td>
+      <td>-0.001306</td>
+      <td>0.245997</td>
+    </tr>
+    <tr>
+      <th>1257</th>
+      <td>2018-12-31</td>
+      <td>239.21</td>
+      <td>0.008772</td>
+      <td>0.247003</td>
+    </tr>
+  </tbody>
+</table>
+<p>1258 rows × 4 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizing-realized-volatility" class="level2" data-number="1.17">
+<h2 data-number="1.17" class="anchored" data-anchor-id="visualizing-realized-volatility"><span class="header-section-number">1.17</span> Visualizing Realized Volatility</h2>
+<p>We can easily add <code>realized_vol</code> to our graph with the following code:</p>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df_spy.plot(x <span class="op">=</span> <span class="st">'date'</span>, </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>            y <span class="op">=</span> [<span class="st">'adj_close'</span>,<span class="st">'ret'</span>,<span class="st">'realized_vol'</span>,], </span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>            subplots<span class="op">=</span><span class="va">True</span>, style<span class="op">=</span><span class="st">'k'</span>, alpha<span class="op">=</span><span class="fl">0.75</span>, </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>            figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">12</span>), </span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>            grid<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="01_jumpstart_files/figure-html/cell-25-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>This graph is an excellent illustration of the leverage effect. When SPY suffers losses, there is a spike in realized volatility, which is to say that the magnitude of the nearby returns increases.</p>
+</section>
+<section id="further-reading" class="level2" data-number="1.18">
+<h2 data-number="1.18" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">1.18</span> Further Reading</h2>
+<p><em>Python Data Science Handbook</em> - Jake VanderPlas</p>
+<p><em>Python for Finance</em> - Yves Hilpisch</p>
+<p><em>Python for Data Analysis</em> - Wes McKinney</p>
+<p><em>Automate the Boring Stuff</em> - Al Sweigert</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./02_dataframe_basics.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>DataFrame</code> Basics</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,4 @@
+- source: website_intro_qmd.qmd
+  connect:
+    - id: 0c69ebb3-9383-4bda-9ba4-a54146df7867
+      url: 'https://colorado.posit.co/rsc/content/0c69ebb3-9383-4bda-9ba4-a54146df7867/'

@@ -1,0 +1,11 @@
+{
+    "https://colorado.posit.co/rsc": {
+        "server_url": "https://colorado.posit.co/rsc",
+        "filename": "/usr/home/pritam.dalal/files/posit_python_quarto/python_examples/top-5-income-share-shiny",
+        "app_url": "https://colorado.posit.co/rsc/content/7c3caa1b-d4d9-411c-a176-1169e576bcfe/",
+        "app_id": 14525,
+        "app_guid": "7c3caa1b-d4d9-411c-a176-1169e576bcfe",
+        "title": "top-5-income-share-shiny",
+        "app_mode": "python-shiny"
+    }
+}
