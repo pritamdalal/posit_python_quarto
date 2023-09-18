@@ -30,7 +30,7 @@ jupyter: python3
 ::: {.incremental}
 * **Workbench:** develop in Python using VS Code, JupyterLab, and Jupyter Notebook (classic)
 
-* **Connect:** deploy a wide range of Python data products, including Jupyter Notebooks (reports, ETL jobs), Dash apps, FastAPIs, Quarto projects 
+* **Connect:** deploy a wide range of Python data products including Jupyter Notebooks (reports, ETL jobs), Shiny for Python apps, Dash apps, FastAPIs, Quarto projects 
 
 * **Package Manager:** serves up a full PyPI mirror and internally developed Python packages
 :::
@@ -68,7 +68,7 @@ In the last couple of years, Posit has begun significant development in the Pyth
 ::: {.incremental}
 - All three Posit professional products (Workbench, Connect, Package Manager) have extensive support for Python data science.
 
-- We have extended our open-source mission to include Python with project like Vetiver, Shiny for Python, and Quarto.
+- We have extended our open-source mission to include Python with project like Vetiver, Shiny for Python, and Quarto.  We also financially support Python open source by sponsoring Numfocus.
 
 - Given our deep history with R, and our extensive support for Python, Posit Team is great for bilingual data science teams.
 
@@ -708,6 +708,7 @@ Here are some examples:
 
 
 # Thank You
+pritam.dalal@posit.co
 
 
 

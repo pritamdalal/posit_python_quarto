@@ -1,0 +1,4 @@
+- source: slides.qmd
+  connect:
+    - id: 6fc8c3e9-fe42-4634-8654-ab68bdcfb848
+      url: 'https://colorado.posit.co/rsc/content/6fc8c3e9-fe42-4634-8654-ab68bdcfb848/'

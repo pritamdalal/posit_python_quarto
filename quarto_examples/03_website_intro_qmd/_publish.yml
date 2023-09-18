@@ -2,3 +2,7 @@
   connect:
     - id: 0c69ebb3-9383-4bda-9ba4-a54146df7867
       url: 'https://colorado.posit.co/rsc/content/0c69ebb3-9383-4bda-9ba4-a54146df7867/'
+    - id: 878b4b92-c9a9-4d70-8d2b-91a34700ed63
+      url: 'https://colorado.posit.co/rsc/content/878b4b92-c9a9-4d70-8d2b-91a34700ed63/'
+    - id: 3a1f1ba1-2876-478b-b703-0692a5fbdcaa
+      url: 'https://colorado.posit.co/rsc/content/3a1f1ba1-2876-478b-b703-0692a5fbdcaa/'
